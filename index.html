@@ -1,0 +1,2985 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Bilal Ahmed — Senior .NET & FinTech Software Engineer | 3+ Years Experience</title>
+<meta name="description" content="Portfolio of Bilal Ahmed, a Senior .NET & FinTech Full-Stack Engineer with 3+ years experience building Brokerage Back-Office systems, FIFO AvgPrice & CGT Tax engines, Live Market Watch, and Digital Account Opening portals."/>
+<meta name="keywords" content="Bilal Ahmed, .NET Developer, FinTech Engineer, C#, ASP.NET Core, SQL Server, FIFO AvgPrice, CGT Capital Gain Tax, Brokerage Back Office, Live Market Watch, Crystal Reports, Karachi"/>
+<meta property="og:title" content="Bilal Ahmed — Senior .NET & FinTech Software Engineer"/>
+<meta property="og:description" content="3+ years building high-throughput FinTech backends, FIFO trade engines, live market watch, and enterprise back-office applications."/>
+<meta property="og:type" content="website"/>
+
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+
+<style>
+/* ─── DESIGN TOKENS ─── */
+:root {
+  --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --radius-xs: 6px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-full: 9999px;
+  --transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-theme="dark"] {
+  --bg: #07090E;
+  --bg-elevated: #0E131F;
+  --bg2: rgba(255, 255, 255, 0.025);
+  --bg3: rgba(255, 255, 255, 0.05);
+  --border: rgba(255, 255, 255, 0.09);
+  --border-strong: rgba(255, 255, 255, 0.16);
+  --text: #F8FAFC;
+  --text2: #94A3B8;
+  --text3: #64748B;
+  --text4: #475569;
+  --nav-bg: rgba(7, 9, 14, 0.88);
+  --card-bg: rgba(14, 19, 31, 0.75);
+  --card-hover: rgba(20, 27, 45, 0.95);
+  --accent: #6366F1;
+  --accent2: #8B5CF6;
+  --accent3: #EC4899;
+  --accent-bg: rgba(99, 102, 241, 0.12);
+  --accent-border: rgba(99, 102, 241, 0.32);
+  --accent-text: #A5B4FC;
+  --accent-glow: rgba(99, 102, 241, 0.22);
+  --avail-color: #34D399;
+  --avail-bg: rgba(52, 211, 153, 0.12);
+  --avail-border: rgba(52, 211, 153, 0.3);
+  --toggle-bg: rgba(255, 255, 255, 0.06);
+  --toggle-border: rgba(255, 255, 255, 0.12);
+  --toggle-active: #6366F1;
+  --modal-overlay: rgba(0, 0, 0, 0.82);
+  --shadow: 0 10px 25px -8px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 20px 35px -12px rgba(0, 0, 0, 0.7);
+}
+
+[data-theme="light"] {
+  --bg: #F8FAFC;
+  --bg-elevated: #FFFFFF;
+  --bg2: rgba(0, 0, 0, 0.02);
+  --bg3: rgba(0, 0, 0, 0.04);
+  --border: rgba(0, 0, 0, 0.09);
+  --border-strong: rgba(0, 0, 0, 0.16);
+  --text: #0F172A;
+  --text2: #475569;
+  --text3: #64748B;
+  --text4: #94A3B8;
+  --nav-bg: rgba(248, 250, 252, 0.92);
+  --card-bg: rgba(255, 255, 255, 0.95);
+  --card-hover: #FFFFFF;
+  --accent: #4F46E5;
+  --accent2: #7C3AED;
+  --accent3: #DB2777;
+  --accent-bg: rgba(79, 70, 229, 0.08);
+  --accent-border: rgba(79, 70, 229, 0.25);
+  --accent-text: #4338CA;
+  --accent-glow: rgba(79, 70, 229, 0.15);
+  --avail-color: #059669;
+  --avail-bg: rgba(5, 150, 105, 0.1);
+  --avail-border: rgba(5, 150, 105, 0.25);
+  --toggle-bg: rgba(0, 0, 0, 0.05);
+  --toggle-border: rgba(0, 0, 0, 0.12);
+  --toggle-active: #4F46E5;
+  --modal-overlay: rgba(15, 23, 42, 0.65);
+  --shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.07);
+  --shadow-lg: 0 15px 35px -5px rgba(0, 0, 0, 0.12);
+}
+
+/* ─── RESET ─── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-main);
+  line-height: 1.6;
+  overflow-x: hidden;
+  cursor: auto;
+  transition: background 0.25s ease, color 0.25s ease;
+  position: relative;
+}
+a { text-decoration: none; color: inherit; transition: var(--transition); }
+ul { list-style: none; }
+button { font-family: inherit; cursor: pointer; border: none; outline: none; }
+img { max-width: 100%; height: auto; display: block; }
+::selection { background: var(--accent-bg); color: var(--accent); }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+/* Ambient background canvas */
+#bg-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+.ambient-glow {
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  transform: translate(-50%, -50%);
+  filter: blur(120px);
+  opacity: 0.14;
+  background: var(--accent);
+}
+
+.wrap {
+  position: relative;
+  z-index: 2;
+}
+.container {
+  max-width: 1220px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ─── NAVIGATION BAR (FIXED & BALANCED) ─── */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: 68px;
+  background: var(--nav-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  transition: var(--transition);
+}
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  gap: 16px;
+}
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.nav-logo {
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.nav-logo span {
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.nav-badge {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent-text);
+  background: var(--accent-bg);
+  border: 1px solid var(--accent-border);
+  padding: 2px 7px;
+  border-radius: var(--radius-xs);
+  display: inline-block;
+  white-space: nowrap;
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin: 0 auto;
+}
+.nav-links a {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--text2);
+  transition: var(--transition);
+  position: relative;
+  padding: 6px 0;
+}
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--text);
+}
+.nav-links a.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  background: var(--toggle-bg);
+  border: 1px solid var(--toggle-border);
+  border-radius: var(--radius-full);
+  padding: 3px;
+}
+.theme-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 4px 9px;
+  border-radius: var(--radius-full);
+  font-size: 11px;
+  font-family: var(--font-mono);
+  color: var(--text3);
+  background: transparent;
+  transition: var(--transition);
+}
+.theme-btn.active {
+  background: var(--toggle-active);
+  color: #FFFFFF;
+}
+.theme-btn svg { width: 12px; height: 12px; }
+.nav-cv-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  background: var(--bg3);
+  border: 1px solid var(--border-strong);
+  color: var(--text);
+  transition: var(--transition);
+}
+.nav-cv-btn:hover {
+  background: var(--accent-bg);
+  border-color: var(--accent-border);
+  color: var(--accent-text);
+}
+.nav-hire-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 7px 15px;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: #FFFFFF;
+  transition: var(--transition);
+  box-shadow: 0 4px 12px var(--accent-glow);
+}
+.nav-hire-btn:hover {
+  transform: translateY(-1px);
+}
+.mobile-toggle {
+  display: none;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 6px;
+  color: var(--text);
+  align-items: center;
+  justify-content: center;
+}
+.mobile-toggle svg { width: 20px; height: 20px; }
+
+/* Mobile Navigation Drawer */
+.mobile-drawer {
+  position: fixed;
+  top: 68px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--nav-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 999;
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.3s ease, opacity 0.25s ease;
+  border-bottom: 1px solid var(--border);
+}
+.mobile-drawer.open {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+.mobile-drawer a {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid var(--border);
+  background: var(--bg2);
+}
+.mobile-drawer a:hover {
+  background: var(--accent-bg);
+  border-color: var(--accent-border);
+  color: var(--accent-text);
+}
+
+/* ─── HERO SECTION ─── */
+#hero {
+  min-height: calc(100vh - 68px);
+  padding: 110px 0 70px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.28fr 0.92fr;
+  gap: 52px;
+  align-items: center;
+}
+.hero-content {
+  display: flex;
+  flex-direction: column;
+}
+.hero-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--avail-color);
+  background: var(--avail-bg);
+  border: 1px solid var(--avail-border);
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  margin-bottom: 20px;
+  width: fit-content;
+}
+.pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--avail-color);
+  box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.6);
+  animation: pulseGreen 2s infinite;
+}
+@keyframes pulseGreen {
+  0% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.6); }
+  70% { box-shadow: 0 0 0 7px rgba(52, 211, 153, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0); }
+}
+
+h1.hero-title {
+  font-size: clamp(34px, 4.4vw, 56px);
+  font-weight: 800;
+  line-height: 1.14;
+  letter-spacing: -0.025em;
+  margin-bottom: 18px;
+  color: var(--text);
+}
+h1.hero-title .gradient-text {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 50%, var(--accent3) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero-tagline {
+  font-size: 16.5px;
+  color: var(--text2);
+  line-height: 1.75;
+  margin-bottom: 28px;
+  max-width: 600px;
+}
+.hero-tagline strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* Stat Cards */
+.hero-stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 32px;
+}
+.stat-box {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 14px 12px;
+  transition: var(--transition);
+}
+.stat-box:hover {
+  border-color: var(--accent-border);
+  transform: translateY(-2px);
+}
+.stat-number {
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 3px;
+  background: linear-gradient(135deg, var(--text) 40%, var(--accent-text));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.stat-label {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--text3);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Actions */
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13.5px;
+  font-weight: 600;
+  padding: 12px 22px;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: #FFFFFF;
+  box-shadow: 0 4px 16px var(--accent-glow);
+  transition: var(--transition);
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px var(--accent-glow);
+}
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13.5px;
+  font-weight: 500;
+  padding: 12px 20px;
+  border-radius: var(--radius-sm);
+  background: var(--card-bg);
+  border: 1px solid var(--border-strong);
+  color: var(--text);
+  transition: var(--transition);
+}
+.btn-secondary:hover {
+  border-color: var(--accent);
+  color: var(--accent-text);
+  transform: translateY(-2px);
+}
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  padding: 12px 18px;
+  border-radius: var(--radius-sm);
+  background: var(--bg2);
+  border: 1px dashed var(--border-strong);
+  color: var(--text2);
+  transition: var(--transition);
+}
+.btn-outline:hover {
+  border-color: var(--accent);
+  color: var(--accent-text);
+  background: var(--accent-bg);
+}
+
+/* Avatar Showcase */
+.hero-visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.avatar-showcase {
+  position: relative;
+  width: 340px;
+  height: 420px;
+  border-radius: var(--radius-lg);
+  padding: 6px;
+  background: linear-gradient(145deg, rgba(255,255,255,0.12), rgba(255,255,255,0.02));
+  border: 1px solid var(--border-strong);
+  box-shadow: var(--shadow-lg);
+}
+.avatar-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: calc(var(--radius-lg) - 4px);
+  overflow: hidden;
+  position: relative;
+  background: var(--bg-elevated);
+}
+.avatar-inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 16%;
+  transition: transform 0.4s ease;
+}
+.avatar-showcase:hover .avatar-inner img {
+  transform: scale(1.025);
+}
+.avatar-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 65%, rgba(7, 9, 14, 0.85) 100%);
+  pointer-events: none;
+}
+.avatar-badge-bottom {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+  right: 14px;
+  padding: 9px 12px;
+  background: rgba(7, 9, 14, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.avatar-badge-title {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+.avatar-badge-subtitle {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--accent-text);
+}
+
+/* Floating Tech Pills */
+.tech-pill-float {
+  position: absolute;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  background: var(--nav-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--accent-border);
+  color: var(--accent-text);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  animation: floatUpDown 4s ease-in-out infinite;
+  z-index: 10;
+}
+.tech-pill-float svg { width: 14px; height: 14px; color: var(--accent); }
+.tech-pill-float:nth-child(1) {
+  top: -12px;
+  right: -18px;
+  animation-delay: 0s;
+}
+.tech-pill-float:nth-child(2) {
+  bottom: 40px;
+  left: -24px;
+  animation-delay: 1.5s;
+}
+.tech-pill-float:nth-child(3) {
+  top: 50%;
+  right: -32px;
+  animation-delay: 2.8s;
+}
+@keyframes floatUpDown {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+
+/* ─── SECTION HEADERS ─── */
+.section {
+  padding: 85px 0;
+  position: relative;
+  border-top: 1px solid var(--border);
+}
+.section-header {
+  margin-bottom: 44px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-bg);
+  border: 1px solid var(--accent-border);
+  padding: 3px 11px;
+  border-radius: var(--radius-full);
+  width: fit-content;
+}
+.section-title {
+  font-size: clamp(26px, 3.2vw, 38px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  line-height: 1.18;
+}
+.section-desc {
+  font-size: 15.5px;
+  color: var(--text2);
+  max-width: 660px;
+  line-height: 1.65;
+}
+
+/* ─── ABOUT SECTION ─── */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 40px;
+  align-items: start;
+}
+.about-bio {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-size: 15.5px;
+  color: var(--text2);
+  line-height: 1.8;
+}
+.about-bio strong {
+  color: var(--text);
+  font-weight: 600;
+}
+.about-highlights-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-top: 8px;
+}
+.highlight-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  transition: var(--transition);
+}
+.highlight-card:hover {
+  border-color: var(--accent-border);
+  transform: translateY(-2px);
+}
+.highlight-icon {
+  font-size: 20px;
+  margin-bottom: 6px;
+}
+.highlight-title {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 3px;
+}
+.highlight-desc {
+  font-size: 12.5px;
+  color: var(--text3);
+  line-height: 1.5;
+}
+
+/* Info Table Card */
+.info-table-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.info-table-header {
+  padding: 16px 20px;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.info-table-header h4 {
+  font-size: 14.5px;
+  font-weight: 700;
+}
+.info-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 13px 20px;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.15s ease;
+}
+.info-row:last-child {
+  border-bottom: none;
+}
+.info-row:hover {
+  background: var(--bg3);
+}
+.info-key {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--text3);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.info-val {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.copy-pill-btn {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--accent-text);
+  background: var(--accent-bg);
+  border: 1px solid var(--accent-border);
+  padding: 2px 7px;
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+  transition: var(--transition);
+}
+.copy-pill-btn:hover {
+  background: var(--accent);
+  color: #FFFFFF;
+}
+
+/* ─── SKILLS SECTION ─── */
+.skills-category-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+.skill-group-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+}
+.skill-group-card:hover {
+  border-color: var(--accent-border);
+  transform: translateY(-2px);
+}
+.skill-group-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.skill-group-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-md);
+  background: var(--accent-bg);
+  border: 1px solid var(--accent-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  color: var(--accent);
+}
+.skill-group-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+}
+.skill-group-subtitle {
+  font-size: 12px;
+  color: var(--text3);
+}
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+.skill-tag {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  padding: 5px 11px;
+  border-radius: var(--radius-sm);
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  color: var(--text2);
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.skill-tag:hover {
+  border-color: var(--accent-border);
+  background: var(--accent-bg);
+  color: var(--accent-text);
+}
+.skill-tag.senior {
+  background: var(--accent-bg);
+  border-color: var(--accent-border);
+  color: var(--accent-text);
+  font-weight: 600;
+}
+.skill-tag.senior::before {
+  content: '★';
+  font-size: 9px;
+  color: var(--accent);
+}
+
+/* ─── FEATURED PROJECTS SECTION (9 REAL ENTERPRISE PROJECTS) ─── */
+.projects-filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+.filter-btn {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  color: var(--text3);
+  transition: var(--transition);
+}
+.filter-btn:hover {
+  color: var(--text);
+  border-color: var(--border-strong);
+}
+.filter-btn.active {
+  background: var(--accent);
+  color: #FFFFFF;
+  border-color: var(--accent);
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+.project-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: var(--transition);
+  box-shadow: var(--shadow);
+  position: relative;
+}
+.project-card:hover {
+  border-color: var(--accent-border);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+.project-card-header {
+  padding: 22px 22px 12px;
+}
+.project-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.project-badge {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent-text);
+  background: var(--accent-bg);
+  border: 1px solid var(--accent-border);
+  padding: 3px 8px;
+  border-radius: var(--radius-xs);
+}
+.project-impact-metric {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--avail-color);
+  background: var(--avail-bg);
+  border: 1px solid var(--avail-border);
+  padding: 3px 8px;
+  border-radius: var(--radius-xs);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.project-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+.project-summary {
+  font-size: 13.5px;
+  color: var(--text2);
+  line-height: 1.6;
+  margin-bottom: 16px;
+  flex-grow: 1;
+}
+.project-tech-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 18px;
+  padding: 0 22px;
+}
+.p-tag {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  color: var(--text3);
+}
+.project-card-footer {
+  padding: 14px 22px;
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+}
+.btn-case-study {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--accent-text);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.btn-case-study:hover {
+  color: var(--text);
+  transform: translateX(3px);
+}
+.project-links {
+  display: flex;
+  gap: 6px;
+}
+.icon-link {
+  width: 30px;
+  height: 30px;
+  border-radius: var(--radius-xs);
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text2);
+  transition: var(--transition);
+}
+.icon-link:hover {
+  color: var(--accent);
+  border-color: var(--accent-border);
+  background: var(--accent-bg);
+}
+
+/* ─── SYSTEM ARCHITECTURE ─── */
+.arch-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+.arch-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 22px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: var(--transition);
+}
+.arch-card:hover {
+  border-color: var(--accent-border);
+  transform: translateY(-2px);
+}
+.arch-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, var(--accent-bg), var(--bg3));
+  border: 1px solid var(--accent-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: var(--accent);
+}
+.arch-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+}
+.arch-text {
+  font-size: 13px;
+  color: var(--text2);
+  line-height: 1.55;
+}
+
+/* ─── EXPERIENCE SECTION ─── */
+.exp-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  position: relative;
+}
+.exp-card {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 32px;
+  position: relative;
+}
+.exp-time-col {
+  padding-right: 16px;
+  display: flex;
+  flex-direction: column;
+}
+.exp-dates {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 5px;
+}
+.exp-badge-tenure {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--text3);
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  padding: 2px 7px;
+  border-radius: 4px;
+  width: fit-content;
+  margin-bottom: 4px;
+}
+.exp-location {
+  font-size: 11.5px;
+  color: var(--text4);
+  font-family: var(--font-mono);
+}
+.exp-body {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 26px;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+}
+.exp-body:hover {
+  border-color: var(--accent-border);
+}
+.exp-role-title {
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 3px;
+}
+.exp-company-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.exp-responsibilities {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.exp-responsibilities li {
+  position: relative;
+  padding-left: 20px;
+  font-size: 14px;
+  color: var(--text2);
+  line-height: 1.6;
+}
+.exp-responsibilities li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.exp-responsibilities li strong {
+  color: var(--text);
+}
+.exp-tech-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.chip {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 3px 9px;
+  border-radius: 4px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  color: var(--text3);
+}
+
+/* ─── EDUCATION SECTION (3 BALANCED CARDS INC. VIRTUAL UNIVERSITY) ─── */
+.edu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.edu-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 26px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition);
+}
+.edu-card:hover {
+  border-color: var(--accent-border);
+  transform: translateY(-3px);
+}
+.edu-card.current-study {
+  border-color: var(--accent-border);
+  background: linear-gradient(180deg, var(--accent-bg) 0%, var(--card-bg) 40%);
+}
+.edu-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+.edu-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: var(--accent-bg);
+  border: 1px solid var(--accent-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+.edu-degree {
+  font-size: 16.5px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.3;
+}
+.edu-institution {
+  font-size: 13px;
+  color: var(--text3);
+  margin-top: 3px;
+}
+.edu-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--border);
+  padding-top: 14px;
+  margin-top: 14px;
+}
+.edu-years {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--text4);
+}
+.edu-grade {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--avail-color);
+  background: var(--avail-bg);
+  border: 1px solid var(--avail-border);
+  padding: 2px 10px;
+  border-radius: var(--radius-full);
+}
+.edu-grade.in-progress {
+  color: var(--accent-text);
+  background: var(--accent-bg);
+  border-color: var(--accent-border);
+}
+
+/* ─── CONTACT SECTION ─── */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 40px;
+  align-items: start;
+}
+.contact-info-col h3 {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+.contact-lead {
+  font-size: 15px;
+  color: var(--text2);
+  line-height: 1.75;
+  margin-bottom: 24px;
+}
+.contact-cards-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+.contact-card-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  transition: var(--transition);
+}
+.contact-card-item:hover {
+  border-color: var(--accent-border);
+  background: var(--card-hover);
+}
+.contact-card-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.contact-card-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-sm);
+  background: var(--accent-bg);
+  border: 1px solid var(--accent-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  color: var(--accent);
+}
+.contact-card-label {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--text3);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.contact-card-val {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--text);
+}
+.whatsapp-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border-radius: var(--radius-sm);
+  background: #25D366;
+  color: #FFFFFF;
+  font-weight: 600;
+  font-size: 13.5px;
+  transition: var(--transition);
+  box-shadow: 0 4px 16px rgba(37, 211, 102, 0.25);
+}
+.whatsapp-cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35);
+}
+
+/* Contact Form */
+.contact-form-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 30px;
+  box-shadow: var(--shadow);
+}
+.contact-form-card h4 {
+  font-size: 19px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+.contact-form-card p {
+  font-size: 13px;
+  color: var(--text3);
+  margin-bottom: 20px;
+}
+.form-group {
+  margin-bottom: 16px;
+}
+.form-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--text2);
+  margin-bottom: 5px;
+}
+.form-input, .form-textarea {
+  width: 100%;
+  padding: 11px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--bg2);
+  border: 1px solid var(--border-strong);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 13.5px;
+  transition: var(--transition);
+}
+.form-input:focus, .form-textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: var(--bg3);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+.form-textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+/* ─── CASE STUDY MODAL ─── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--modal-overlay);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+.modal-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+.modal-dialog {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-lg);
+  max-width: 740px;
+  width: 100%;
+  max-height: 86vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow-lg);
+  transform: translateY(18px) scale(0.98);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+.modal-overlay.open .modal-dialog {
+  transform: translateY(0) scale(1);
+}
+.modal-header {
+  padding: 22px 26px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  background: var(--bg-elevated);
+  z-index: 10;
+}
+.modal-close-btn {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text2);
+  cursor: pointer;
+  transition: var(--transition);
+}
+.modal-close-btn:hover {
+  background: var(--accent-bg);
+  color: var(--accent);
+  border-color: var(--accent-border);
+}
+.modal-body {
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+.modal-section-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--accent-text);
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.modal-desc-text {
+  font-size: 14px;
+  color: var(--text2);
+  line-height: 1.65;
+}
+.modal-bullets {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 6px;
+}
+.modal-bullets li {
+  position: relative;
+  padding-left: 16px;
+  font-size: 13.5px;
+  color: var(--text2);
+  line-height: 1.55;
+}
+.modal-bullets li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+.modal-tech-box {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+/* ─── TOAST NOTIFICATION ─── */
+.toast-notice {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--accent-border);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  padding: 11px 18px;
+  border-radius: var(--radius-md);
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 9999;
+  transform: translateY(90px);
+  opacity: 0;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+  pointer-events: none;
+}
+.toast-notice.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* ─── FOOTER ─── */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 30px 0;
+  background: var(--bg2);
+}
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+.footer-copy {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text3);
+}
+.footer-copy span {
+  color: var(--accent);
+}
+.footer-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.footer-links a {
+  font-size: 12.5px;
+  color: var(--text3);
+}
+.footer-links a:hover {
+  color: var(--text);
+}
+
+/* ─── SCROLL REVEAL ─── */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── RESPONSIVE BREAKPOINTS ─── */
+@media (max-width: 1120px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+  .hero-visual { order: -1; }
+  .avatar-showcase { width: 310px; height: 380px; }
+  .projects-grid { grid-template-columns: repeat(2, 1fr); }
+  .arch-grid { grid-template-columns: repeat(2, 1fr); }
+  .edu-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 900px) {
+  .nav-links { display: none; }
+  .mobile-toggle { display: flex; }
+  .nav-actions .nav-cv-btn { display: none; }
+}
+
+@media (max-width: 768px) {
+  .skills-category-grid { grid-template-columns: 1fr; }
+  .about-grid { grid-template-columns: 1fr; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .arch-grid { grid-template-columns: 1fr; }
+  .hero-stats-row { grid-template-columns: repeat(2, 1fr); }
+  .exp-card { grid-template-columns: 1fr; gap: 12px; }
+  .avatar-showcase { width: 280px; height: 340px; }
+  .tech-pill-float:nth-child(3) { display: none; }
+  .footer-inner { flex-direction: column; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- Background Canvas & Ambient Follower -->
+<canvas id="bg-canvas"></canvas>
+<div class="ambient-glow" id="ambientGlow"></div>
+
+<div class="wrap">
+
+<!-- ─── NAVIGATION BAR ─── -->
+<nav>
+  <div class="container nav-inner">
+    <div class="nav-brand">
+      <a href="#hero" class="nav-logo">
+        Bilal<span>Ahmed</span>
+      </a>
+      <span class="nav-badge">Senior .NET</span>
+    </div>
+
+    <!-- Desktop Nav Links -->
+    <div class="nav-links">
+      <a href="#hero" class="active">Home</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#architecture">Architecture</a>
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </div>
+
+    <!-- Right Nav Actions -->
+    <div class="nav-actions">
+      <!-- Dark/Light Theme Switcher -->
+      <div class="theme-toggle" id="themeToggle" role="group" aria-label="Theme Switcher">
+        <button class="theme-btn active" id="btnDark" onclick="setTheme('dark')" title="Dark Mode">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          Dark
+        </button>
+        <button class="theme-btn" id="btnLight" onclick="setTheme('light')" title="Light Mode">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          Light
+        </button>
+      </div>
+
+      <!-- Resume Button -->
+      <a href="#contact" class="nav-cv-btn" onclick="openResumePrompt()">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        Resume
+      </a>
+
+      <!-- Quick Hire Button -->
+      <a class="nav-hire-btn" href="mailto:bkahmed33334@gmail.com">Hire Me →</a>
+
+      <!-- Mobile Hamburger Button -->
+      <button class="mobile-toggle" id="mobileMenuBtn" onclick="toggleMobileMenu()" aria-label="Toggle navigation">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Navigation Drawer -->
+<div class="mobile-drawer" id="mobileDrawer">
+  <a href="#hero" onclick="closeMobileMenu()">Home <span>→</span></a>
+  <a href="#about" onclick="closeMobileMenu()">About <span>→</span></a>
+  <a href="#skills" onclick="closeMobileMenu()">Skills <span>→</span></a>
+  <a href="#projects" onclick="closeMobileMenu()">Featured Projects (9) <span>→</span></a>
+  <a href="#architecture" onclick="closeMobileMenu()">Architecture <span>→</span></a>
+  <a href="#experience" onclick="closeMobileMenu()">Experience <span>→</span></a>
+  <a href="#education" onclick="closeMobileMenu()">Education <span>→</span></a>
+  <a href="#contact" onclick="closeMobileMenu()">Contact <span>→</span></a>
+  <a href="mailto:bkahmed33334@gmail.com" style="background:var(--accent);color:#fff;text-align:center;justify-content:center">Email Bilal Directly</a>
+</div>
+
+<!-- ─── HERO SECTION ─── -->
+<section id="hero">
+  <div class="container hero-grid">
+    <div class="hero-content">
+      <div class="hero-status-pill">
+        <span class="pulse-dot"></span>
+        Available for Full-Time &amp; FinTech Enterprise Contracts
+      </div>
+
+      <h1 class="hero-title">
+        Engineering High-Throughput<br>
+        <span class="gradient-text">.NET &amp; FinTech Systems.</span>
+      </h1>
+
+      <p class="hero-tagline">
+        <strong>Senior .NET &amp; Full-Stack Engineer</strong> with <strong>3+ years</strong> of commercial experience architecting Brokerage Back-Office platforms, FIFO AvgPrice &amp; CGT Tax calculation engines, real-time Live Market Watch streaming, and high-performance SQL Server databases.
+      </p>
+
+      <!-- Key Impact Metrics -->
+      <div class="hero-stats-row">
+        <div class="stat-box">
+          <div class="stat-number">3+</div>
+          <div class="stat-label">Years Exp.</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">9+</div>
+          <div class="stat-label">Core Systems</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">45%</div>
+          <div class="stat-label">DB Speedup</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">FIFO</div>
+          <div class="stat-label">Trade Engine</div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="hero-actions">
+        <a class="btn-primary" href="#projects">
+          Explore Projects (9)
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a class="btn-secondary" href="#contact">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Get In Touch
+        </a>
+        <button class="btn-outline" onclick="copyContact('bkahmed33334@gmail.com', 'Email copied!')">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copy Email
+        </button>
+      </div>
+    </div>
+
+    <!-- Right Hero Column (Portrait Showcase) -->
+    <div class="hero-visual">
+      <div class="avatar-showcase">
+        <div class="avatar-inner">
+          <img src="Bilal.jpeg" alt="Bilal Ahmed - Senior .NET & FinTech Developer" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'400\' viewBox=\'0 0 300 400\'%3E%3Crect fill=\'%23111827\' width=\'100%25\' height=\'100%25\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' fill=\'%236366F1\' font-size=\'44\' font-family=\'sans-serif\' text-anchor=\'middle\' dominant-baseline=\'middle\'%3EBA%3C/text%3E%3C/svg%3E'"/>
+          <div class="avatar-overlay"></div>
+          <div class="avatar-badge-bottom">
+            <div>
+              <div class="avatar-badge-title">Bilal Ahmed</div>
+              <div class="avatar-badge-subtitle">Senior .NET &amp; FinTech Engineer</div>
+            </div>
+            <span class="hero-status-pill" style="margin-bottom:0;padding:3px 9px;font-size:10.5px">Active</span>
+          </div>
+        </div>
+
+        <!-- Floating Badges -->
+        <div class="tech-pill-float">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          .NET 8 &amp; C#
+        </div>
+        <div class="tech-pill-float">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+          SQL Server &amp; FIFO Math
+        </div>
+        <div class="tech-pill-float">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          SignalR &amp; Crystal Reports
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── ABOUT SECTION ─── -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag">About Me</span>
+      <h2 class="section-title">FinTech Engineering &amp; Core Systems</h2>
+      <p class="section-desc">Specialized in stock market brokerage back-offices, FIFO calculation logic, capital gain taxation, and real-time data feeds.</p>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-bio reveal">
+        <p>
+          I am a <strong>Senior .NET &amp; Full-Stack Engineer</strong> based in Karachi, Pakistan, with over <strong>3 years of commercial experience</strong> developing enterprise-grade financial systems and corporate back-offices.
+        </p>
+        <p>
+          My core expertise lies in financial mathematics and high-throughput data processing: architecting <strong>FIFO (First-In, First-Out) matching engines</strong> for daily Average Price (AvgPrice) and Capital Gain Tax (CGT) compliance, engineering <strong>Live Market Watch</strong> feeds with SignalR, building digital <strong>Account Opening</strong> investor onboarding portals, and deploying enterprise <strong>Crystal Reports</strong> for financial audits.
+        </p>
+        <p>
+          I have built and maintained critical back-office systems including <strong>GEM Back Office</strong>, <strong>Crescent Steel Back Office</strong>, and <strong>UniTrust Insurance Agent</strong> portals, optimizing complex T-SQL queries and stored procedures to handle high-volume trading settlements seamlessly.
+        </p>
+
+        <!-- Highlights Row -->
+        <div class="about-highlights-grid">
+          <div class="highlight-card">
+            <div class="highlight-icon">📈</div>
+            <div class="highlight-title">FIFO &amp; Tax Calculation Engines</div>
+            <div class="highlight-desc">Implemented high-precision Buy/Sell FIFO matching algorithms for daily AvgPrice &amp; Capital Gain Tax (CGT).</div>
+          </div>
+          <div class="highlight-card">
+            <div class="highlight-icon">⚡</div>
+            <div class="highlight-title">Real-Time Market Feeds &amp; Gateways</div>
+            <div class="highlight-desc">Engineered low-latency Live Market Watch streaming and trading gateway integrations with robust error handling.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Info Card -->
+      <div class="reveal">
+        <div class="info-table-card">
+          <div class="info-table-header">
+            <h4>Quick Professional Profile</h4>
+            <span class="nav-badge">3+ Yrs Commercial</span>
+          </div>
+          <div class="info-row">
+            <span class="info-key">Full Name</span>
+            <span class="info-val">Bilal Ahmed</span>
+          </div>
+          <div class="info-row">
+            <span class="info-key">Role Title</span>
+            <span class="info-val">Senior .NET &amp; FinTech Engineer</span>
+          </div>
+          <div class="info-row">
+            <span class="info-key">Higher Education</span>
+            <span class="info-val">Virtual University of Pakistan (Enrolled)</span>
+          </div>
+          <div class="info-row">
+            <span class="info-key">Location</span>
+            <span class="info-val">Karachi, Pakistan (Onsite &amp; Remote)</span>
+          </div>
+          <div class="info-row">
+            <span class="info-key">Email</span>
+            <span class="info-val">
+              <a href="mailto:bkahmed33334@gmail.com" style="color:var(--accent)">bkahmed33334@gmail.com</a>
+              <button class="copy-pill-btn" onclick="copyContact('bkahmed33334@gmail.com', 'Email copied!')">Copy</button>
+            </span>
+          </div>
+          <div class="info-row">
+            <span class="info-key">Phone / WhatsApp</span>
+            <span class="info-val">
+              <a href="https://wa.me/923333442076" target="_blank" style="color:var(--accent)">+92 333 344 2076</a>
+              <button class="copy-pill-btn" onclick="copyContact('+923333442076', 'Phone copied!')">Copy</button>
+            </span>
+          </div>
+          <div class="info-row">
+            <span class="info-key">LinkedIn</span>
+            <span class="info-val">
+              <a href="https://linkedin.com/in/bilal-ahmed-2572a4244" target="_blank" style="color:var(--accent)">in/bilal-ahmed</a>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SKILLS SECTION ─── -->
+<section class="section" id="skills">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag">Core Competencies</span>
+      <h2 class="section-title">Technical Expertise &amp; Stack</h2>
+      <p class="section-desc">Tools and frameworks battle-tested in high-concurrency brokerage and enterprise back-offices.</p>
+    </div>
+
+    <div class="skills-category-grid">
+      <!-- Group 1: FinTech & .NET Backend -->
+      <div class="skill-group-card reveal">
+        <div class="skill-group-header">
+          <div class="skill-group-icon">💻</div>
+          <div>
+            <div class="skill-group-title">.NET &amp; Financial Backend</div>
+            <div class="skill-group-subtitle">Core frameworks, runtimes &amp; calculation logic</div>
+          </div>
+        </div>
+        <div class="skill-tags">
+          <span class="skill-tag senior">C# (.NET 8 / 7 / 6)</span>
+          <span class="skill-tag senior">ASP.NET Core Web API</span>
+          <span class="skill-tag senior">ASP.NET MVC</span>
+          <span class="skill-tag senior">FIFO Matching Algorithms</span>
+          <span class="skill-tag">Entity Framework Core</span>
+          <span class="skill-tag">Dapper ORM</span>
+          <span class="skill-tag">SignalR (Live Market Streaming)</span>
+          <span class="skill-tag">Windows Services &amp; Console Apps</span>
+          <span class="skill-tag">JWT Security &amp; RBAC</span>
+          <span class="skill-tag">Trading Gateway Integrations</span>
+        </div>
+      </div>
+
+      <!-- Group 2: Databases & SQL Optimization -->
+      <div class="skill-group-card reveal">
+        <div class="skill-group-header">
+          <div class="skill-group-icon">🗄️</div>
+          <div>
+            <div class="skill-group-title">Databases &amp; Performance</div>
+            <div class="skill-group-subtitle">Complex stored procedures, indexing &amp; reporting</div>
+          </div>
+        </div>
+        <div class="skill-tags">
+          <span class="skill-tag senior">Microsoft SQL Server (SSMS)</span>
+          <span class="skill-tag senior">Complex Stored Procedures</span>
+          <span class="skill-tag senior">Query Optimization &amp; Index Tuning</span>
+          <span class="skill-tag senior">Crystal Reports Integration</span>
+          <span class="skill-tag">Trade Ledger Reporting</span>
+          <span class="skill-tag">Temporary Tables &amp; CTEs</span>
+          <span class="skill-tag">PostgreSQL &amp; MySQL</span>
+          <span class="skill-tag">Database Schema Migrations</span>
+          <span class="skill-tag">Audit Trail Triggers</span>
+        </div>
+      </div>
+
+      <!-- Group 3: Architecture & System Design -->
+      <div class="skill-group-card reveal">
+        <div class="skill-group-header">
+          <div class="skill-group-icon">🏗️</div>
+          <div>
+            <div class="skill-group-title">Architecture &amp; Design Patterns</div>
+            <div class="skill-group-subtitle">Reliable transaction handling &amp; scalability</div>
+          </div>
+        </div>
+        <div class="skill-tags">
+          <span class="skill-tag senior">Clean Architecture</span>
+          <span class="skill-tag senior">SOLID Principles</span>
+          <span class="skill-tag">Brokerage Back-Office Patterns</span>
+          <span class="skill-tag">Repository &amp; Unit of Work</span>
+          <span class="skill-tag">Dependency Injection</span>
+          <span class="skill-tag">Idempotent API Design</span>
+          <span class="skill-tag">Multi-Tenant Architecture</span>
+          <span class="skill-tag">Event-Driven Architecture</span>
+        </div>
+      </div>
+
+      <!-- Group 4: Frontend & Tools -->
+      <div class="skill-group-card reveal">
+        <div class="skill-group-header">
+          <div class="skill-group-icon">🌐</div>
+          <div>
+            <div class="skill-group-title">Frontend &amp; Dev Environment</div>
+            <div class="skill-group-subtitle">Modern UI integration &amp; version control</div>
+          </div>
+        </div>
+        <div class="skill-tags">
+          <span class="skill-tag senior">React.js &amp; Hooks</span>
+          <span class="skill-tag senior">Angular (v14 — v17)</span>
+          <span class="skill-tag">JavaScript (ES6+) &amp; TypeScript</span>
+          <span class="skill-tag">HTML5 &amp; CSS3 / Bootstrap 5</span>
+          <span class="skill-tag">Git &amp; GitHub</span>
+          <span class="skill-tag">Visual Studio 2022 &amp; VS Code</span>
+          <span class="skill-tag">Postman &amp; Swagger API Docs</span>
+          <span class="skill-tag">IIS Web Server</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FEATURED PROJECTS SECTION (9 REAL ENTERPRISE PROJECTS) ─── -->
+<section class="section" id="projects">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag">Production Portfolio</span>
+      <h2 class="section-title">Featured Enterprise &amp; FinTech Systems</h2>
+      <p class="section-desc">Production systems developed for brokerage firms, corporate back-offices, and high-precision financial trading platforms.</p>
+    </div>
+
+    <!-- Filter Buttons -->
+    <div class="projects-filter-bar reveal">
+      <button class="filter-btn active" onclick="filterProjects('all', this)">All Systems (9)</button>
+      <button class="filter-btn" onclick="filterProjects('fintech', this)">FinTech &amp; Calculation</button>
+      <button class="filter-btn" onclick="filterProjects('backoffice', this)">Back Office &amp; ERP</button>
+      <button class="filter-btn" onclick="filterProjects('realtime', this)">Real-Time &amp; Gateways</button>
+      <button class="filter-btn" onclick="filterProjects('reporting', this)">Reporting &amp; Onboarding</button>
+    </div>
+
+    <!-- Projects Grid (9 Real Projects) -->
+    <div class="projects-grid">
+
+      <!-- 1. Live Market Watch -->
+      <div class="project-card reveal" data-category="realtime">
+        <div class="project-card-header">
+          <div class="project-meta-row">
+            <span class="project-badge">Real-Time Streaming</span>
+            <span class="project-impact-metric">⚡ Low Latency</span>
+          </div>
+          <h3 class="project-title">Live Market Watch (Stock Exchange Ticker)</h3>
+          <p class="project-summary">Real-time market monitoring platform streaming live stock quotes, bid/ask depth, indices rates, and price-volume changes without page refresh.</p>
+        </div>
+        <div class="project-tech-stack">
+          <span class="p-tag">ASP.NET Core</span>
+          <span class="p-tag">SignalR</span>
+          <span class="p-tag">WebSockets</span>
+          <span class="p-tag">C#</span>
+          <span class="p-tag">SQL Server</span>
+          <span class="p-tag">React.js</span>
+        </div>
+        <div class="project-card-footer">
+          <span class="btn-case-study" onclick="openProjectModal('marketwatch')">
+            View Architecture Details →
+          </span>
+          <div class="project-links">
+            <a href="#contact" class="icon-link" title="Request Details">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. AvgPrice System -->
+      <div class="project-card reveal" data-category="fintech">
+        <div class="project-card-header">
+          <div class="project-meta-row">
+            <span class="project-badge">Financial Math</span>
+            <span class="project-impact-metric">📊 FIFO Engine</span>
+          </div>
+          <h3 class="project-title">AvgPrice System (FIFO Buy-Sell Valuation)</h3>
+          <p class="project-summary">High-precision financial calculation engine implementing strict First-In First-Out (FIFO) buy-sell trade matching to generate daily weighted average share prices.</p>
+        </div>
+        <div class="project-tech-stack">
+          <span class="p-tag">C# .NET</span>
+          <span class="p-tag">FIFO Logic</span>
+          <span class="p-tag">SQL Stored Procs</span>
+          <span class="p-tag">Temp Tables</span>
+          <span class="p-tag">Crystal Reports</span>
+        </div>
+        <div class="project-card-footer">
+          <span class="btn-case-study" onclick="openProjectModal('avgprice')">
+            View Architecture Details →
+          </span>
+          <div class="project-links">
+            <a href="#contact" class="icon-link" title="Request Details">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. CGT System -->
+      <div class="project-card reveal" data-category="fintech">
+        <div class="project-card-header">
+          <div class="project-meta-row">
+            <span class="project-badge">Tax Compliance</span>
+            <span class="project-impact-metric">⚖️ Tax Computation</span>
+          </div>
+          <h3 class="project-title">CGT System (Capital Gain Tax FIFO Engine)</h3>
+          <p class="project-summary">Regulatory tax computation engine matching equity buy/sell transactions using FIFO rules, calculating holding durations, realized gain/loss, and net tax liability.</p>
+        </div>
+        <div class="project-tech-stack">
+          <span class="p-tag">ASP.NET Core</span>
+          <span class="p-tag">C#</span>
+          <span class="p-tag">SQL Server</span>
+          <span class="p-tag">Tax Rules</span>
+          <span class="p-tag">Crystal Reports</span>
+        </div>
+        <div class="project-card-footer">
+          <span class="btn-case-study" onclick="openProjectModal('cgt')">
+            View Architecture Details →
+          </span>
+          <div class="project-links">
+            <a href="#contact" class="icon-link" title="Request Details">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. Account Opening System -->
+      <div class="project-card reveal" data-category="reporting">
+        <div class="project-card-header">
+          <div class="project-meta-row">
+            <span class="project-badge">Digital Onboarding</span>
+            <span class="project-impact-metric">📑 KYC Verified</span>
+          </div>
+          <h3 class="project-title">Account Opening System (Digital KYC Portal)</h3>
+          <p class="project-summary">Investor account opening web portal with document upload, CNIC verification, digital signatures, bank account validation, and automated multi-stage back-office approvals.</p>
+        </div>
+        <div class="project-tech-stack">
+          <span class="p-tag">ASP.NET Core MVC</span>
+          <span class="p-tag">SQL Server</span>
+          <span class="p-tag">Angular</span>
+          <span class="p-tag">REST APIs</span>
+          <span class="p-tag">JWT</span>
+        </div>
+        <div class="project-card-footer">
+          <span class="btn-case-study" onclick="openProjectModal('accountopening')">
+            View Architecture Details →
+          </span>
+          <div class="project-links">
+            <a href="#contact" class="icon-link" title="Request Details">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. GEM Back Office -->
+      <div class="project-card reveal" data-category="backoffice">
+        <div class="project-card-header">
+          <div class="project-meta-row">
+            <span class="project-badge">Brokerage Ops</span>
+            <span class="project-impact-metric">🛡️ Trade Audit</span>
+          </div>
+          <h3 class="project-title">GEM Back Office (Brokerage Management)</h3>
+          <p class="project-summary">Comprehensive back-office management system for Growth Enterprise Market &amp; equity trading: client ledgers, trade settlements, clearing, and order logs.</p>
+        </div>
+        <div class="project-tech-stack">
+          <span class="p-tag">ASP.NET Core</span>
+          <span class="p-tag">C#</span>
+          <span class="p-tag">SQL Server</span>
+          <span class="p-tag">Dapper</span>
+          <span class="p-tag">Stored Procs</span>
+          <span class="p-tag">Crystal Reports</span>
+        </div>
+        <div class="project-card-footer">
+          <span class="btn-case-study" onclick="openProjectModal('gem')">
+            View Architecture Details →
+          </span>
+          <div class="project-links">
+            <a href="#contact" class="icon-link" title="Request Details">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. Crescent Steel Back Office -->
+      <div class="project-card reveal" data-category="backoffice">
+        <div class="project-card-header">
+          <div class="project-meta-row">
+            <span class="project-badge">Enterprise ERP</span>
+            <span class="project-impact-metric">🏢 Corporate Ops</span>
+          </div>
+          <h3 class="project-title">Crescent Steel Back Office Enterprise Suite</h3>
+          <p class="project-summary">Enterprise operational back-office system managing multi-department vouchers, supplier/customer accounts, inventory ledgers, and financial consolidation.</p>
+        </div>
+        <div class="project-tech-stack">
+          <span class="p-tag">ASP.NET MVC</span>
+          <span class="p-tag">C#</span>
+          <span class="p-tag">SQL Server</span>
+          <span class="p-tag">Entity Framework</span>
+          <span class="p-tag">Crystal Reports</span>
+        </div>
+        <div class="project-card-footer">
+          <span class="btn-case-study" onclick="openProjectModal('crescentsteel')">
+            View Architecture Details →
+          </span>
+          <div class="project-links">
+            <a href="#contact" class="icon-link" title="Request Details">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7. UniTrust Insurance Agent -->
+      <div class="project-card reveal" data-category="backoffice">
+        <div class="project-card-header">
+          <div class="project-meta-row">
+            <span class="project-badge">InsurTech</span>
+            <span class="project-impact-metric">💼 Agent Hierarchy</span>
+          </div>
+          <h3 class="project-title">UniTrust Insurance Agent &amp; Commission Portal</h3>
+          <p class="project-summary">Specialized insurance agent platform handling policy lifecycle tracking, premium collections, hierarchy-based commission calculations, and agent payouts.</p>
+        </div>
+        <div class="project-tech-stack">
+          <span class="p-tag">ASP.NET Core Web API</span>
+          <span class="p-tag">SQL Server</span>
+          <span class="p-tag">React.js</span>
+          <span class="p-tag">JWT</span>
+          <span class="p-tag">Bootstrap 5</span>
+        </div>
+        <div class="project-card-footer">
+          <span class="btn-case-study" onclick="openProjectModal('unitrust')">
+            View Architecture Details →
+          </span>
+          <div class="project-links">
+            <a href="#contact" class="icon-link" title="Request Details">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8. Gateway System -->
+      <div class="project-card reveal" data-category="realtime">
+        <div class="project-card-header">
+          <div class="project-meta-row">
+            <span class="project-badge">Integration Engine</span>
+            <span class="project-impact-metric">🚀 Secure Pipe</span>
+          </div>
+          <h3 class="project-title">Financial Gateway &amp; Transaction API System</h3>
+          <p class="project-summary">Secure gateway service connecting front-end applications with core banking, payment providers, and market feeds with payload encryption and audit logging.</p>
+        </div>
+        <div class="project-tech-stack">
+          <span class="p-tag">.NET 8</span>
+          <span class="p-tag">C# Web API</span>
+          <span class="p-tag">REST Webhooks</span>
+          <span class="p-tag">SQL Server</span>
+          <span class="p-tag">Serilog</span>
+        </div>
+        <div class="project-card-footer">
+          <span class="btn-case-study" onclick="openProjectModal('gateway')">
+            View Architecture Details →
+          </span>
+          <div class="project-links">
+            <a href="#contact" class="icon-link" title="Request Details">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 9. Crystal Reports Reporting Suite -->
+      <div class="project-card reveal" data-category="reporting">
+        <div class="project-card-header">
+          <div class="project-meta-row">
+            <span class="project-badge">Financial Reports</span>
+            <span class="project-impact-metric">🖨️ PDF &amp; Export</span>
+          </div>
+          <h3 class="project-title">Crystal Reports Financial &amp; Trade Suite</h3>
+          <p class="project-summary">Automated reporting architecture generating daily trade confirmations, client ledgers, portfolio balance sheets, and regulatory PSX submission reports.</p>
+        </div>
+        <div class="project-tech-stack">
+          <span class="p-tag">Crystal Reports</span>
+          <span class="p-tag">SQL Server</span>
+          <span class="p-tag">Stored Procedures</span>
+          <span class="p-tag">C#</span>
+          <span class="p-tag">PDF Automation</span>
+        </div>
+        <div class="project-card-footer">
+          <span class="btn-case-study" onclick="openProjectModal('crystalreports')">
+            View Architecture Details →
+          </span>
+          <div class="project-links">
+            <a href="#contact" class="icon-link" title="Request Details">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── ARCHITECTURE PHILOSOPHY ─── -->
+<section class="section" id="architecture">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag">Engineering Standards</span>
+      <h2 class="section-title">FinTech Architecture &amp; Reliability</h2>
+      <p class="section-desc">Building mission-critical systems where financial accuracy and query speed are paramount.</p>
+    </div>
+
+    <div class="arch-grid">
+      <div class="arch-card reveal">
+        <div class="arch-icon">⚖️</div>
+        <h4 class="arch-title">FIFO Matching Precision</h4>
+        <p class="arch-text">Strict algorithmic implementation of First-In First-Out matching for equity positions, ensuring zero mathematical discrepancy in Average Cost and Capital Gain Tax.</p>
+      </div>
+
+      <div class="arch-card reveal">
+        <div class="arch-icon">⚡</div>
+        <h4 class="arch-title">Query Tuning &amp; Profiling</h4>
+        <p class="arch-text">Deep optimization of complex stored procedures, CTEs, temp tables, and covering indexes to handle heavy end-of-day settlement batch processing in seconds.</p>
+      </div>
+
+      <div class="arch-card reveal">
+        <div class="arch-icon">🔒</div>
+        <h4 class="arch-title">Data Integrity &amp; Audit</h4>
+        <p class="arch-text">Immutable financial ledgers with comprehensive audit trails, strict Role-Based Access Control (RBAC), and parameter sanitization to protect sensitive financial records.</p>
+      </div>
+
+      <div class="arch-card reveal">
+        <div class="arch-icon">📡</div>
+        <h4 class="arch-title">Real-Time Data Feeds</h4>
+        <p class="arch-text">Low-latency SignalR and WebSocket hubs streaming live ticker ticks, bid/ask depth, and order state transitions to thousands of connected browser terminals.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── EXPERIENCE SECTION ─── -->
+<section class="section" id="experience">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag">Career Journey</span>
+      <h2 class="section-title">Professional Experience</h2>
+      <p class="section-desc">Over 3 years of commercial software engineering in FinTech back-offices, financial math, and enterprise applications.</p>
+    </div>
+
+    <div class="exp-timeline">
+      <!-- Role 1 -->
+      <div class="exp-card reveal">
+        <div class="exp-time-col">
+          <div class="exp-dates">Mar 2025 — Present</div>
+          <div class="exp-badge-tenure">Current Role</div>
+          <div class="exp-location">Karachi, Pakistan · Hybrid</div>
+        </div>
+
+        <div class="exp-body">
+          <h3 class="exp-role-title">Software Developer (.NET &amp; FinTech Systems)</h3>
+          <div class="exp-company-name">
+            <span>Catalyst IT Solutions</span>
+            <span style="color:var(--text3);font-weight:400">· Full-Time</span>
+          </div>
+
+          <ul class="exp-responsibilities">
+            <li>
+              <strong>Financial Engines &amp; Back-Office:</strong> Designed and implemented core modules for <strong>GEM Back Office</strong> and <strong>Crescent Steel Back Office</strong>, managing transactional accounting and trade settlements with ASP.NET Core &amp; C#.
+            </li>
+            <li>
+              <strong>FIFO &amp; Tax Algorithms:</strong> Programmed high-precision <strong>AvgPrice</strong> and <strong>CGT (Capital Gain Tax)</strong> calculation systems using FIFO matching for daily buy/sell order records.
+            </li>
+            <li>
+              <strong>Real-Time Feeds &amp; Gateways:</strong> Engineered <strong>Live Market Watch</strong> socket streaming using SignalR and integrated core transaction <strong>Gateway Systems</strong> with third-party APIs.
+            </li>
+            <li>
+              <strong>SQL Server Performance:</strong> Tuned heavy settlement queries and stored procedures, reducing execution times by up to <strong>45%</strong> and eliminating deadlock escalations during peak trading hours.
+            </li>
+            <li>
+              <strong>Crystal Reports Suite:</strong> Developed and maintained enterprise Crystal Reports for daily trade confirmations, investor ledgers, and regulatory compliance submissions.
+            </li>
+          </ul>
+
+          <div class="exp-tech-chips">
+            <span class="chip">ASP.NET Core</span>
+            <span class="chip">C#</span>
+            <span class="chip">SQL Server</span>
+            <span class="chip">FIFO Math</span>
+            <span class="chip">SignalR</span>
+            <span class="chip">Crystal Reports</span>
+            <span class="chip">React</span>
+            <span class="chip">Angular</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Role 2 -->
+      <div class="exp-card reveal">
+        <div class="exp-time-col">
+          <div class="exp-dates">Oct 2023 — Feb 2025</div>
+          <div class="exp-badge-tenure">16 Months</div>
+          <div class="exp-location">Karachi, Pakistan · Onsite</div>
+        </div>
+
+        <div class="exp-body">
+          <h3 class="exp-role-title">Software Developer (.NET &amp; Database)</h3>
+          <div class="exp-company-name">
+            <span>Out2Sol IT Services &amp; Consulting</span>
+            <span style="color:var(--text3);font-weight:400">· Full-Time</span>
+          </div>
+
+          <ul class="exp-responsibilities">
+            <li>
+              <strong>Web &amp; Business Applications:</strong> Developed and extended client web portals, insurance systems (UniTrust Insurance Agent), and internal back-office applications using <strong>ASP.NET MVC, C#, and SQL Server</strong>.
+            </li>
+            <li>
+              <strong>Data Layer &amp; Stored Procedures:</strong> Wrote complex SQL queries, schema updates, and stored procedures to handle client data operations, billing ledgers, and reporting needs.
+            </li>
+            <li>
+              <strong>Bug Fixing &amp; Production Support:</strong> Investigated and resolved critical production defects across legacy codebases, significantly boosting overall system stability.
+            </li>
+            <li>
+              <strong>Collaborative Delivery:</strong> Worked alongside senior software engineers in Agile sprints to ensure timely delivery of key modules.
+            </li>
+          </ul>
+
+          <div class="exp-tech-chips">
+            <span class="chip">ASP.NET MVC</span>
+            <span class="chip">C#</span>
+            <span class="chip">SQL Server</span>
+            <span class="chip">LINQ</span>
+            <span class="chip">Stored Procedures</span>
+            <span class="chip">JavaScript</span>
+            <span class="chip">Git</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── EDUCATION SECTION (3 BALANCED CARDS INC. VIRTUAL UNIVERSITY) ─── -->
+<section class="section" id="education">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag">Academics</span>
+      <h2 class="section-title">Education &amp; Qualifications</h2>
+      <p class="section-desc">Formal university degree studies and certified professional software engineering diplomas.</p>
+    </div>
+
+    <div class="edu-grid">
+      <!-- Edu Card 1: Virtual University (NEW!) -->
+      <div class="edu-card current-study reveal">
+        <div>
+          <div class="edu-header">
+            <div class="edu-icon">🏛️</div>
+            <div>
+              <h3 class="edu-degree">Bachelor of Science in Computer Science (BSCS)</h3>
+              <div class="edu-institution">Virtual University of Pakistan (VU)</div>
+            </div>
+          </div>
+          <p style="font-size:13.5px;color:var(--text2);line-height:1.6">
+            Undergraduate degree covering Advanced Algorithms, Distributed Systems, Software Architecture, Database Management Systems, Computer Networks, and Cloud Computing.
+          </p>
+        </div>
+        <div class="edu-footer">
+          <span class="edu-years">2026 — Present</span>
+          <span class="edu-grade in-progress">Enrolled / In Progress</span>
+        </div>
+      </div>
+
+      <!-- Edu Card 2: Aptech HDSE -->
+      <div class="edu-card reveal">
+        <div>
+          <div class="edu-header">
+            <div class="edu-icon">🎓</div>
+            <div>
+              <h3 class="edu-degree">Higher Diploma in Software Engineering (H.D.S.E)</h3>
+              <div class="edu-institution">Aptech Metro Star Gate, Karachi</div>
+            </div>
+          </div>
+          <p style="font-size:13.5px;color:var(--text2);line-height:1.6">
+            Extensive practical software engineering curriculum covering Enterprise C# / .NET, SQL Server RDBMS, Object-Oriented Analysis &amp; Design, and Full-Stack Web Development.
+          </p>
+        </div>
+        <div class="edu-footer">
+          <span class="edu-years">2021 — 2025</span>
+          <span class="edu-grade">Grade A (Distinction)</span>
+        </div>
+      </div>
+
+      <!-- Edu Card 3: Intermediate CS -->
+      <div class="edu-card reveal">
+        <div>
+          <div class="edu-header">
+            <div class="edu-icon">📘</div>
+            <div>
+              <h3 class="edu-degree">Intermediate in Computer Science (ICS)</h3>
+              <div class="edu-institution">Modern Sciences Public High School, Karachi</div>
+            </div>
+          </div>
+          <p style="font-size:13.5px;color:var(--text2);line-height:1.6">
+            Foundational computing studies covering discrete mathematics, programming principles, computer architecture, and computational logic.
+          </p>
+        </div>
+        <div class="edu-footer">
+          <span class="edu-years">2019 — 2021</span>
+          <span class="edu-grade">Grade A</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CONTACT SECTION ─── -->
+<section class="section" id="contact">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag">Let's Connect</span>
+      <h2 class="section-title">Have a Role or FinTech Project in Mind?</h2>
+      <p class="section-desc">I am open to full-time engineering roles, backend systems development, and consulting contracts. Let's build reliable software together.</p>
+    </div>
+
+    <div class="contact-grid">
+      <!-- Contact Information & Quick Actions -->
+      <div class="contact-info-col reveal">
+        <h3>Direct Communication</h3>
+        <p class="contact-lead">
+          Reach out via WhatsApp, Email, or LinkedIn. I am actively available for enterprise discussions.
+        </p>
+
+        <div class="contact-cards-list">
+          <!-- Email Card -->
+          <div class="contact-card-item">
+            <div class="contact-card-left">
+              <div class="contact-card-icon">✉</div>
+              <div>
+                <div class="contact-card-label">Primary Email</div>
+                <a href="mailto:bkahmed33334@gmail.com" class="contact-card-val">bkahmed33334@gmail.com</a>
+              </div>
+            </div>
+            <button class="copy-pill-btn" onclick="copyContact('bkahmed33334@gmail.com', 'Email copied!')">Copy</button>
+          </div>
+
+          <!-- Phone Card -->
+          <div class="contact-card-item">
+            <div class="contact-card-left">
+              <div class="contact-card-icon">📞</div>
+              <div>
+                <div class="contact-card-label">Mobile &amp; WhatsApp</div>
+                <a href="tel:03333442076" class="contact-card-val">0333 344 2076</a>
+              </div>
+            </div>
+            <button class="copy-pill-btn" onclick="copyContact('03333442076', 'Phone copied!')">Copy</button>
+          </div>
+
+          <!-- LinkedIn Card -->
+          <div class="contact-card-item">
+            <div class="contact-card-left">
+              <div class="contact-card-icon">💼</div>
+              <div>
+                <div class="contact-card-label">LinkedIn Profile</div>
+                <a href="https://linkedin.com/in/bilal-ahmed-2572a4244" target="_blank" class="contact-card-val">linkedin.com/in/bilal-ahmed</a>
+              </div>
+            </div>
+            <a href="https://linkedin.com/in/bilal-ahmed-2572a4244" target="_blank" class="copy-pill-btn">Visit ↗</a>
+          </div>
+
+          <!-- Location Card -->
+          <div class="contact-card-item">
+            <div class="contact-card-left">
+              <div class="contact-card-icon">📍</div>
+              <div>
+                <div class="contact-card-label">Location &amp; Timezone</div>
+                <div class="contact-card-val">Karachi, Pakistan (PKT / UTC+5)</div>
+              </div>
+            </div>
+            <span class="hero-status-pill" style="margin-bottom:0;padding:2px 8px;font-size:10px">Remote Ready</span>
+          </div>
+        </div>
+
+        <!-- WhatsApp Quick Chat CTA -->
+        <a class="whatsapp-cta-btn" href="https://wa.me/923333442076?text=Hi%20Bilal,%20I%20reviewed%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20.NET%20opportunity." target="_blank">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.173.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.145.39-.086s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.099.824z"/></svg>
+          Quick Chat on WhatsApp
+        </a>
+      </div>
+
+      <!-- Interactive Contact Form -->
+      <div class="contact-form-card reveal">
+        <h4>Send Direct Inquiry</h4>
+        <p>Send a message directly to my inbox with your project details or job description.</p>
+
+        <form id="portfolioContactForm" onsubmit="handleFormSubmit(event)">
+          <div class="form-group">
+            <label class="form-label" for="senderName">Your Name / Organization *</label>
+            <input class="form-input" type="text" id="senderName" required placeholder="e.g. John Doe / Brokerage Firm"/>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="senderEmail">Your Email *</label>
+            <input class="form-input" type="email" id="senderEmail" required placeholder="name@company.com"/>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="subjectLine">Role / Project Scope *</label>
+            <input class="form-input" type="text" id="subjectLine" required placeholder="e.g. Senior .NET / FinTech Engineer Role"/>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="messageBody">Message Details *</label>
+            <textarea class="form-textarea" id="messageBody" required placeholder="Describe requirements, technology expectations, or business objectives..."></textarea>
+          </div>
+
+          <button type="submit" class="btn-primary" style="width:100%;justify-content:center;font-size:14px">
+            Send Message ✉
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="container footer-inner">
+    <div class="footer-copy">
+      © 2026 <span>Bilal Ahmed</span> · Senior .NET &amp; FinTech Engineer. All rights reserved.
+    </div>
+    <div class="footer-links">
+      <a href="mailto:bkahmed33334@gmail.com">bkahmed33334@gmail.com</a>
+      <a href="https://linkedin.com/in/bilal-ahmed-2572a4244" target="_blank">LinkedIn</a>
+      <a href="#hero">Back to Top ↑</a>
+    </div>
+  </div>
+</footer>
+
+</div>
+
+<!-- ─── PROJECT CASE STUDY MODAL ─── -->
+<div class="modal-overlay" id="projectModal" onclick="handleModalOverlayClick(event)">
+  <div class="modal-dialog">
+    <div class="modal-header">
+      <div>
+        <span class="project-badge" id="modalBadge">Case Study</span>
+        <h3 style="font-size:19px;font-weight:700;margin-top:6px;color:var(--text)" id="modalTitle">Project Title</h3>
+      </div>
+      <button class="modal-close-btn" onclick="closeProjectModal()" aria-label="Close dialog">✕</button>
+    </div>
+    <div class="modal-body" id="modalBody">
+      <!-- Populated dynamically by JavaScript -->
+    </div>
+  </div>
+</div>
+
+<!-- ─── TOAST NOTIFICATION ─── -->
+<div class="toast-notice" id="toastNotice">
+  <span id="toastIcon">✓</span>
+  <span id="toastMessage">Action completed!</span>
+</div>
+
+<!-- ─── JAVASCRIPT LOGIC ─── -->
+<script>
+/* ─── THEME CONTROLLER ─── */
+let isDarkMode = true;
+
+function setTheme(t) {
+  isDarkMode = (t === 'dark');
+  document.documentElement.setAttribute('data-theme', t);
+  document.getElementById('btnDark').classList.toggle('active', isDarkMode);
+  document.getElementById('btnLight').classList.toggle('active', !isDarkMode);
+  localStorage.setItem('bilal-portfolio-theme', t);
+}
+
+// Restore saved theme preference or default to dark
+const savedTheme = localStorage.getItem('bilal-portfolio-theme') || 'dark';
+setTheme(savedTheme);
+
+/* ─── MOBILE DRAWER TOGGLE ─── */
+function toggleMobileMenu() {
+  const drawer = document.getElementById('mobileDrawer');
+  drawer.classList.toggle('open');
+}
+function closeMobileMenu() {
+  document.getElementById('mobileDrawer').classList.remove('open');
+}
+
+/* ─── AMBIENT CANVAS PARTICLES ─── */
+const canvas = document.getElementById('bg-canvas');
+const ctx = canvas.getContext('2d');
+let W, H, particles = [];
+
+function resizeCanvas() {
+  W = canvas.width = window.innerWidth;
+  H = canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', () => {
+  resizeCanvas();
+  initParticles();
+});
+
+class Particle {
+  constructor() {
+    this.reset(true);
+  }
+  reset(init) {
+    this.x = Math.random() * W;
+    this.y = init ? Math.random() * H : H + 10;
+    this.size = Math.random() * 1.4 + 0.4;
+    this.vy = -(Math.random() * 0.35 + 0.08);
+    this.vx = (Math.random() - 0.5) * 0.15;
+    this.alpha = Math.random() * 0.32 + 0.05;
+    this.hue = 220 + Math.random() * 60;
+  }
+  update() {
+    this.x += this.vx;
+    this.y += this.vy;
+    if (this.y < -10 || this.x < -10 || this.x > W + 10) {
+      this.reset(false);
+    }
+  }
+  draw() {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fillStyle = isDarkMode 
+      ? `hsla(${this.hue}, 80%, 75%, ${this.alpha})`
+      : `hsla(${this.hue}, 70%, 45%, ${this.alpha * 0.6})`;
+    ctx.fill();
+  }
+}
+
+function initParticles() {
+  particles = [];
+  const count = Math.min(Math.floor((W * H) / 15000), 85);
+  for (let i = 0; i < count; i++) {
+    particles.push(new Particle());
+  }
+}
+initParticles();
+
+function animateCanvas() {
+  ctx.clearRect(0, 0, W, H);
+  particles.forEach(p => {
+    p.update();
+    p.draw();
+  });
+  requestAnimationFrame(animateCanvas);
+}
+animateCanvas();
+
+/* Subtle cursor glow follower */
+const ambientGlow = document.getElementById('ambientGlow');
+window.addEventListener('mousemove', e => {
+  ambientGlow.style.left = e.clientX + 'px';
+  ambientGlow.style.top = e.clientY + 'px';
+});
+
+/* ─── SCROLLSPY ACTIVE NAVIGATION ─── */
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+
+function updateActiveNav() {
+  const scrollPos = window.scrollY + 100;
+  sections.forEach(sec => {
+    const top = sec.offsetTop;
+    const height = sec.offsetHeight;
+    const id = sec.getAttribute('id');
+    if (scrollPos >= top && scrollPos < top + height) {
+      navLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+      });
+    }
+  });
+}
+window.addEventListener('scroll', updateActiveNav, { passive: true });
+
+/* ─── SCROLL REVEAL OBSERVER ─── */
+const revealElements = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+revealElements.forEach(el => revealObserver.observe(el));
+
+/* ─── PROJECT FILTERING ─── */
+function filterProjects(category, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  const cards = document.querySelectorAll('.project-card');
+  cards.forEach(card => {
+    const cardCat = card.getAttribute('data-category');
+    if (category === 'all' || cardCat === category) {
+      card.style.display = 'flex';
+      setTimeout(() => card.classList.add('in'), 10);
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+
+/* ─── CASE STUDY DATABASE (ALL 9 REAL ENTERPRISE PROJECTS) ─── */
+const projectData = {
+  marketwatch: {
+    badge: 'Real-Time Streaming Engine',
+    title: 'Live Market Watch (Stock Exchange Ticker)',
+    problem: 'Brokers and equity traders required sub-second market data visibility for PSX stocks, indices, bid/ask spreads, and transaction volumes without reloading their browsers or overwhelming server connections.',
+    architecture: 'Engineered an ASP.NET Core backend utilizing SignalR persistent WebSocket hubs. Market data feeds from the gateway are pushed asynchronously to connected clients through Redis Pub/Sub channels to ensure low latency and horizontal scaling.',
+    highlights: [
+      'Sub-100ms real-time quote updates streamed directly to browser watchlists.',
+      'Implemented differential payload broadcasting (only sending altered price/volume fields to save bandwidth).',
+      'Client-side state management in React with price-flash green/red animations.',
+      'Resilient automatic reconnection fallback handling network drops smoothly.'
+    ],
+    tech: ['ASP.NET Core', 'SignalR', 'WebSockets', 'C#', 'SQL Server', 'Redis', 'React.js']
+  },
+  avgprice: {
+    badge: 'FinTech Calculation Engine',
+    title: 'AvgPrice System (FIFO Buy-Sell Valuation Engine)',
+    problem: 'Traders execute multiple buy and sell orders at volatile market rates daily. Calculating the true Weighted Average Price and holding valuation requires strict First-In First-Out (FIFO) trade execution matching without rounding discrepancies.',
+    architecture: 'Designed a high-performance calculation engine in C# and optimized SQL Server Stored Procedures using temporary tables, Common Table Expressions (CTEs), and window functions. Each sell order is matched against historical open buy batches chronologically to calculate the accurate realized average cost and remaining portfolio holding value.',
+    highlights: [
+      'Zero calculation drift across thousands of daily buy/sell lot transactions.',
+      'Daily end-of-day automated batch processing updating investor portfolio valuations in seconds.',
+      'Comprehensive audit trail logging every FIFO matching lot and remaining quantity.',
+      'Crystal Reports integration generating investor portfolio holding summaries.'
+    ],
+    tech: ['C# .NET', 'FIFO Algorithms', 'SQL Server Stored Procedures', 'CTEs & Window Functions', 'Crystal Reports']
+  },
+  cgt: {
+    badge: 'Regulatory Tax Engine',
+    title: 'CGT System (Capital Gain Tax FIFO Computation)',
+    problem: 'Brokerages must comply with strict statutory tax regulations on securities trading. Calculating Capital Gain Tax requires matching buy and sell dates under FIFO rules, determining holding periods (short-term vs long-term), and computing net taxable gain after deductible charges.',
+    architecture: 'Engineered a specialized tax calculation microservice using ASP.NET Core and T-SQL. The engine tracks purchase dates, matches liquidated shares against earliest acquired stock (FIFO), applies tax percentage slabs based on holding tenure, and logs taxable amounts.',
+    highlights: [
+      'Automated deduction of statutory Capital Gain Tax on daily realized trade profits.',
+      'Support for tax exemption rules, loss carry-forwards, and statutory slab adjustments.',
+      'Reduced manual tax reconciliation time from days to automated real-time calculations.',
+      'Direct integration with Crystal Reports to print FBR/regulatory compliant CGT certificates.'
+    ],
+    tech: ['ASP.NET Core', 'C#', 'SQL Server', 'FIFO Tax Math', 'Regulatory Slabs', 'Crystal Reports']
+  },
+  accountopening: {
+    badge: 'Digital Investor Onboarding',
+    title: 'Account Opening System (Digital KYC & Investor Onboarding)',
+    problem: 'Traditional brokerage account opening involved lengthy physical paper submissions, manual CNIC copies, and multi-day verification delays, resulting in drop-offs.',
+    architecture: 'Built a streamlined digital onboarding web portal in ASP.NET Core MVC with an Angular frontend. Features multi-step form wizard, secure document and biometric upload, IBAN bank account validation, and automated routing to back-office compliance officers.',
+    highlights: [
+      'Reduced new client account activation time from 4 days to under 24 hours.',
+      'Role-Based multi-stage back-office approval workflow with audit remarks.',
+      'Automated SMS and Email notifications via RESTful webhook alerts at each verification step.',
+      'Encrypted document repository ensuring compliance with data privacy regulations.'
+    ],
+    tech: ['ASP.NET Core MVC', 'C#', 'SQL Server', 'Entity Framework', 'Angular', 'REST APIs', 'JWT Security']
+  },
+  gem: {
+    badge: 'Brokerage Operations',
+    title: 'GEM Back Office (Brokerage & Trade Settlement System)',
+    problem: 'Growth Enterprise Market (GEM) and equity trading desks require an integrated back-office engine to settle trades, maintain client cash/share ledgers, calculate commissions, and track clearinghouse settlements.',
+    architecture: 'Architected and enhanced enterprise back-office modules in ASP.NET Core and SQL Server using Dapper and Stored Procedures for maximum execution speed. Manages client accounts, margin deposits, trade log reconciliations, and daily broker balance sheets.',
+    highlights: [
+      'Processed high-volume trading day settlements without concurrency locks or ledger mismatches.',
+      'Fast client ledger lookups with optimized multi-table clustered indexing.',
+      'Automated broker commission splits and CDC (Central Depository) share transfers.',
+      'Integrated Crystal Reports for daily client trade confirmations and account statements.'
+    ],
+    tech: ['ASP.NET Core', 'C#', 'SQL Server (SSMS)', 'Dapper ORM', 'Complex Stored Procedures', 'Crystal Reports']
+  },
+  crescentsteel: {
+    badge: 'Enterprise ERP Suite',
+    title: 'Crescent Steel Back Office Enterprise Suite',
+    problem: 'Industrial manufacturing and corporate operations at Crescent Steel required a reliable back-office system to track multi-branch vouchers, purchase orders, vendor invoices, inventory valuation, and general ledger consolidation.',
+    architecture: 'Developed and maintained core enterprise back-office modules using ASP.NET MVC and C#. Designed normalized SQL Server database structures to track double-entry accounting ledgers, raw material stock levels, and automated bill passes.',
+    highlights: [
+      'Automated financial voucher approval workflows across corporate departments.',
+      'Real-time inventory deduction and raw material stock level notifications.',
+      'Integrated Crystal Reports and RDLC to generate executive balance sheets and audit trail reports.',
+      'Robust error-handling middleware preventing partial transaction commits during batch saves.'
+    ],
+    tech: ['ASP.NET MVC', 'C#', 'SQL Server', 'Entity Framework', 'Crystal Reports', 'Bootstrap 5']
+  },
+  unitrust: {
+    badge: 'InsurTech & Commission Engine',
+    title: 'UniTrust Insurance Agent & Commission Portal',
+    problem: 'Insurance brokerages struggled with managing multi-tier agent hierarchies, tracking policy renewal schedules, calculating tiered commissions, and processing premium receipts.',
+    architecture: 'Constructed an insurance management portal in ASP.NET Core Web API with a React.js dashboard. Implemented multi-tier agent commission calculation algorithms that distribute commissions across team leads and field agents upon verified premium payment.',
+    highlights: [
+      'Automated multi-tier agent commission calculations based on policy premium types.',
+      'Policy renewal alerts and automated SMS reminders sent to policyholders.',
+      'Clean JWT authentication with role-based permissions for Agents, Supervisors, and Admin.',
+      'Exportable monthly payout statements and agent performance analytics.'
+    ],
+    tech: ['ASP.NET Core Web API', 'C#', 'SQL Server', 'React.js', 'JWT Authentication', 'Bootstrap 5']
+  },
+  gateway: {
+    badge: 'API & Integration Gateway',
+    title: 'Financial Gateway & Transaction API System',
+    problem: 'Core trading systems needed a secure, high-throughput gateway to communicate with external banking networks, payment channels, and live exchange data streams with strict validation.',
+    architecture: 'Engineered a resilient API gateway in .NET 8 using C# and asynchronous pipeline handlers. Features HMAC request signing, rate limiting, payload encryption, request-response correlation IDs, and Serilog structured logging.',
+    highlights: [
+      'High-throughput message routing with zero packet loss under heavy load.',
+      'Idempotent webhook receivers to prevent duplicate transaction credits.',
+      'Centralized structured logging with Serilog for rapid diagnostic tracing in production.',
+      'Health check endpoints and automated failover recovery.'
+    ],
+    tech: ['.NET 8', 'C# Web API', 'REST Webhooks', 'SQL Server', 'Serilog', 'HMAC Security']
+  },
+  crystalreports: {
+    badge: 'Enterprise Reporting Suite',
+    title: 'Crystal Reports Financial & Trade Reporting Suite',
+    problem: 'Financial institutions, brokerage compliance, and external auditors require pixel-perfect, tamper-evident financial statements, client trade confirmations, and tax certificates ready for print and export.',
+    architecture: 'Engineered a reporting subsystem utilizing SAP Crystal Reports and SQL Server views / stored procedures. Built C# export pipelines to dynamically generate, password-protect, and email PDF reports automatically upon end-of-day batch settlement.',
+    highlights: [
+      'Automated generation of daily Trade Confirmation Notes for all active brokerage clients.',
+      'Detailed Account Ledgers with running balances, credit/debit totals, and transaction dates.',
+      'FBR-compliant Capital Gain Tax (CGT) summary certificates.',
+      'Sub-second PDF generation pipeline triggered directly from web management screens.'
+    ],
+    tech: ['Crystal Reports', 'SQL Server Views', 'Complex Stored Procedures', 'C# Automation', 'PDF Exporting']
+  }
+};
+
+function openProjectModal(key) {
+  const p = projectData[key];
+  if (!p) return;
+
+  document.getElementById('modalBadge').textContent = p.badge;
+  document.getElementById('modalTitle').textContent = p.title;
+
+  const body = document.getElementById('modalBody');
+  body.innerHTML = `
+    <div>
+      <div class="modal-section-title">
+        <span>🎯</span> Business Challenge &amp; Context
+      </div>
+      <p class="modal-desc-text">${p.problem}</p>
+    </div>
+
+    <div>
+      <div class="modal-section-title">
+        <span>🏛️</span> Architectural Design &amp; Logic
+      </div>
+      <p class="modal-desc-text">${p.architecture}</p>
+    </div>
+
+    <div>
+      <div class="modal-section-title">
+        <span>⭐</span> Key Technical Achievements &amp; Impact
+      </div>
+      <ul class="modal-bullets">
+        ${p.highlights.map(h => `<li>${h}</li>`).join('')}
+      </ul>
+    </div>
+
+    <div>
+      <div class="modal-section-title">
+        <span>🛠️</span> Technologies &amp; Tools Used
+      </div>
+      <div class="modal-tech-box">
+        ${p.tech.map(t => `<span class="skill-tag">${t}</span>`).join('')}
+      </div>
+    </div>
+  `;
+
+  document.getElementById('projectModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeProjectModal() {
+  document.getElementById('projectModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function handleModalOverlayClick(e) {
+  if (e.target.id === 'projectModal') {
+    closeProjectModal();
+  }
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeProjectModal();
+});
+
+/* ─── TOAST NOTIFICATIONS & CLIPBOARD ─── */
+function showToast(msg) {
+  const toast = document.getElementById('toastNotice');
+  const msgEl = document.getElementById('toastMessage');
+  msgEl.textContent = msg;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 3000);
+}
+
+function copyContact(text, successMsg) {
+  navigator.clipboard.writeText(text).then(() => {
+    showToast(successMsg || 'Copied to clipboard!');
+  }).catch(() => {
+    showToast('Value: ' + text);
+  });
+}
+
+function openResumePrompt() {
+  showToast('Opening Resume & Contact details...');
+  window.location.href = 'mailto:bkahmed33334@gmail.com?subject=Requesting%20Bilal%20Ahmed%20Resume&body=Hi%20Bilal,%20please%20share%20your%20latest%20Senior%20.NET%20&%20FinTech%20Resume/CV.';
+}
+
+/* ─── CONTACT FORM SUBMIT HANDLER ─── */
+function handleFormSubmit(e) {
+  e.preventDefault();
+  const name = document.getElementById('senderName').value.trim();
+  const email = document.getElementById('senderEmail').value.trim();
+  const subject = document.getElementById('subjectLine').value.trim();
+  const message = document.getElementById('messageBody').value.trim();
+
+  if (!name || !email || !message) {
+    showToast('Please fill out all required fields.');
+    return;
+  }
+
+  const mailtoUrl = `mailto:bkahmed33334@gmail.com?subject=${encodeURIComponent(subject + ' - via Portfolio')}&body=${encodeURIComponent(
+    `From: ${name} (${email})\n\nMessage:\n${message}\n\nSent from Portfolio Contact Form`
+  )}`;
+
+  window.location.href = mailtoUrl;
+  showToast('Opening your email client...');
+  document.getElementById('portfolioContactForm').reset();
+}
+</script>
+</body>
+</html>

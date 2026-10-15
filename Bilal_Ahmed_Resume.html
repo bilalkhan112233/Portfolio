@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bilal Ahmed - ASP.NET Developer Resume</title>
+<style>
+  @page {
+    size: A4;
+    margin: 12mm 15mm 12mm 15mm;
+  }
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    font-family: 'Calibri', 'Arial', 'Helvetica Neue', sans-serif;
+    color: #1a1a1a;
+    background: #ffffff;
+    line-height: 1.35;
+    font-size: 10.5pt;
+  }
+  .resume-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 10px 0;
+  }
+  /* HEADER */
+  header {
+    text-align: center;
+    border-bottom: 2px solid #1e3a8a;
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+  }
+  h1 {
+    font-size: 20pt;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #0f172a;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+  .subtitle {
+    font-size: 12pt;
+    font-weight: 600;
+    color: #1e3a8a;
+    margin-bottom: 6px;
+    letter-spacing: 0.5px;
+  }
+  .contact-info {
+    font-size: 9.5pt;
+    color: #475569;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .contact-info a {
+    color: #1e3a8a;
+    text-decoration: none;
+  }
+  .contact-info a:hover {
+    text-decoration: underline;
+  }
+  .contact-separator {
+    color: #94a3b8;
+  }
+
+  /* SECTION STYLING */
+  section {
+    margin-bottom: 11px;
+  }
+  .section-title {
+    font-size: 11pt;
+    font-weight: 700;
+    color: #0f172a;
+    text-transform: uppercase;
+    border-bottom: 1.5px solid #cbd5e1;
+    padding-bottom: 2px;
+    margin-bottom: 6px;
+    letter-spacing: 0.8px;
+    display: flex;
+    align-items: center;
+  }
+  .section-title::before {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 12px;
+    background: #1e3a8a;
+    margin-right: 6px;
+    border-radius: 1px;
+  }
+
+  /* SUMMARY */
+  .summary-text {
+    font-size: 9.5pt;
+    color: #334155;
+    text-align: justify;
+    line-height: 1.38;
+  }
+
+  /* SKILLS TABLE / LIST */
+  .skills-grid {
+    display: table;
+    width: 100%;
+    font-size: 9.5pt;
+  }
+  .skill-row {
+    display: table-row;
+  }
+  .skill-cat {
+    display: table-cell;
+    font-weight: 700;
+    color: #1e293b;
+    width: 22%;
+    padding: 1.5px 0;
+    vertical-align: top;
+  }
+  .skill-items {
+    display: table-cell;
+    color: #334155;
+    padding: 1.5px 0;
+  }
+
+  /* EXPERIENCE & PROJECTS */
+  .item {
+    margin-bottom: 8px;
+  }
+  .item:last-child {
+    margin-bottom: 0;
+  }
+  .item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 2px;
+  }
+  .item-title {
+    font-size: 10pt;
+    font-weight: 700;
+    color: #0f172a;
+  }
+  .item-company {
+    font-weight: 600;
+    color: #1e3a8a;
+  }
+  .item-date {
+    font-size: 9pt;
+    font-weight: 600;
+    color: #475569;
+    white-space: nowrap;
+  }
+  .item-sub {
+    font-size: 9pt;
+    font-style: italic;
+    color: #64748b;
+    margin-bottom: 3px;
+  }
+  .tech-stack-tag {
+    font-size: 8.5pt;
+    color: #0f172a;
+    font-weight: 600;
+    margin-bottom: 3px;
+  }
+  .tech-stack-tag span {
+    font-weight: normal;
+    color: #475569;
+  }
+
+  /* BULLETS */
+  ul {
+    margin: 0;
+    padding-left: 17px;
+  }
+  li {
+    font-size: 9.2pt;
+    color: #334155;
+    margin-bottom: 2.5px;
+    line-height: 1.32;
+    text-align: justify;
+  }
+  li strong {
+    color: #0f172a;
+  }
+
+  /* PRINT ADJUSTMENTS */
+  @media print {
+    body {
+      print-color-adjust: exact;
+      -webkit-print-color-adjust: exact;
+    }
+    .no-print {
+      display: none !important;
+    }
+    .resume-container {
+      padding: 0;
+    }
+  }
+
+  /* ACTION BAR (FOR BROWSER VIEW) */
+  .action-bar {
+    background: #0f172a;
+    color: white;
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-family: sans-serif;
+  }
+  .btn-print {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.2s;
+  }
+  .btn-print:hover {
+    background: #1d4ed8;
+  }
+</style>
+</head>
+<body>
+
+<div class="resume-container">
+  <!-- BROWSER PRINT BAR (HIDDEN IN PRINT) -->
+  <div class="action-bar no-print">
+    <div>
+      <strong>Bilal Ahmed — ATS Optimized Resume</strong>
+      <span style="font-size: 12px; opacity: 0.8; margin-left: 10px;">(1-Page Standard / Strict ATS Compliant)</span>
+    </div>
+    <button class="btn-print" onclick="window.print()">🖨️ Print / Save as PDF</button>
+  </div>
+
+  <!-- HEADER -->
+  <header>
+    <h1>BILAL AHMED</h1>
+    <div class="subtitle">ASP.NET Core Developer | Full-Stack .NET Engineer</div>
+    <div class="contact-info">
+      <span>📍 Karachi, Pakistan</span>
+      <span class="contact-separator">•</span>
+      <span>📞 +92 333 3442076</span>
+      <span class="contact-separator">•</span>
+      <span>✉️ <a href="mailto:bilalxdeveloper99@gmail.com">bilalxdeveloper99@gmail.com</a></span>
+      <span class="contact-separator">•</span>
+      <span>🔗 <a href="https://linkedin.com/in/bilal-ahmed-2572a4244" target="_blank">linkedin.com/in/bilal-ahmed-2572a4244</a></span>
+    </div>
+  </header>
+
+  <!-- PROFESSIONAL SUMMARY -->
+  <section>
+    <div class="section-title">Professional Summary</div>
+    <p class="summary-text">
+      Results-driven <strong>ASP.NET Core Developer</strong> with <strong>3+ years of experience</strong> engineering, modernizing, and maintaining mission-critical financial, ERP, and enterprise software systems. Proven expertise in building secure <strong>RESTful & SOAP APIs</strong>, optimizing high-volume <strong>SQL Server databases</strong> (stored procedures, indexing, execution plans), and integrating seamless <strong>Angular & React</strong> frontends. Demonstrated track record in resolving critical production bottlenecks, implementing financial transaction modules (EOD, CDC, Settlements), and contributing to <strong>Azure CI/CD</strong> cloud deployments. Adept in Clean Architecture, OOP, and agile SDLC workflows.
+    </p>
+  </section>
+
+  <!-- TECHNICAL SKILLS -->
+  <section>
+    <div class="section-title">Technical Skills</div>
+    <div class="skills-grid">
+      <div class="skill-row">
+        <div class="skill-cat">Backend & Frameworks:</div>
+        <div class="skill-items">C#, ASP.NET Core (.NET 8/7/6), ASP.NET MVC, Web API, Web Forms, Entity Framework Core, LINQ, Dapper, Microservices</div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-cat">Databases & Performance:</div>
+        <div class="skill-items">MS SQL Server, PostgreSQL, MySQL, Stored Procedures, Complex T-SQL, Query Tuning, Indexing, Execution Plans</div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-cat">Frontend & Web Tech:</div>
+        <div class="skill-items">Angular, React.js, AngularJS, JavaScript (ES6+), HTML5, CSS3, Bootstrap, AJAX, JSON</div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-cat">APIs & Integrations:</div>
+        <div class="skill-items">RESTful Web APIs, SOAP Web Services, JWT Authentication, Swagger/OpenAPI, Postman, Third-Party Financial Gateways</div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-cat">Cloud, Tools & DevOps:</div>
+        <div class="skill-items">Microsoft Azure (App Services), Git, GitHub, CI/CD Pipelines, IIS Server, Crystal Reports, Visual Studio 2022, SSMS</div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-cat">Methodologies & Concepts:</div>
+        <div class="skill-items">Object-Oriented Programming (OOP), SOLID Principles, Repository Pattern, Dependency Injection (DI), SDLC, Agile/Scrum</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROFESSIONAL EXPERIENCE -->
+  <section>
+    <div class="section-title">Professional Experience</div>
+
+    <!-- ROLE 1: Catalyst IT Solutions -->
+    <div class="item">
+      <div class="item-header">
+        <div>
+          <span class="item-title">Associate Software Developer (.NET Developer)</span>
+          <span class="contact-separator"> | </span>
+          <span class="item-company">Catalyst IT Solutions</span>
+        </div>
+        <div class="item-date">Mar 2025 – Present | Karachi, PK</div>
+      </div>
+      <ul>
+        <li>Architect and maintain enterprise-grade web applications using <strong>ASP.NET Core, ASP.NET MVC, and C#</strong>, ensuring <strong>99.9% uptime</strong> for high-availability production environments.</li>
+        <li>Engineered and optimized <strong>SQL Server stored procedures, indexing structures, and complex queries</strong>, slashing query response times by <strong>35%</strong> on high-concurrency databases.</li>
+        <li>Designed robust <strong>RESTful APIs</strong> and integrated dynamic <strong>Angular & React.js</strong> interfaces, streamlining data exchange and enhancing end-user transaction speed.</li>
+        <li>Rapidly diagnosed and resolved tier-1 production bugs across financial backoffice modules, maintaining near-zero unplanned system downtime.</li>
+        <li>Collaborated with cross-functional agile teams to deploy microservices components to <strong>Microsoft Azure</strong> via automated <strong>CI/CD pipelines</strong>.</li>
+      </ul>
+    </div>
+
+    <!-- ROLE 2: Out2Sol IT Services -->
+    <div class="item">
+      <div class="item-header">
+        <div>
+          <span class="item-title">Associate Software Developer</span>
+          <span class="contact-separator"> | </span>
+          <span class="item-company">Out2Sol IT Services & Consulting</span>
+        </div>
+        <div class="item-date">Oct 2023 – Feb 2025 | Karachi, PK</div>
+      </div>
+      <ul>
+        <li>Developed scalable line-of-business web applications using <strong>ASP.NET MVC, C#, LINQ, and SQL Server</strong> across diverse multi-tenant enterprise clients.</li>
+        <li>Authored over <strong>50+ optimized stored procedures and views</strong> to generate business-critical reports and power analytical dashboards.</li>
+        <li>Identified application bottlenecks, refactored legacy database queries, and implemented unit tests, improving software reliability and data integrity.</li>
+        <li>Partnered closely with senior architects, QA engineers, and clients to ship custom enterprise modules within strict sprint deadlines.</li>
+      </ul>
+    </div>
+
+    <!-- ROLE 3: Alkaram Textile Mills -->
+    <div class="item">
+      <div class="item-header">
+        <div>
+          <span class="item-title">ERP Operations Specialist (Data Systems)</span>
+          <span class="contact-separator"> | </span>
+          <span class="item-company">Alkaram Textile Mills Pvt Ltd</span>
+        </div>
+        <div class="item-date">Apr 2022 – Aug 2023 | Karachi, PK</div>
+      </div>
+      <ul>
+        <li>Administered ERP data reconciliation and automated data migration pipelines from Excel to central databases, maintaining <strong>99.8% record accuracy</strong>.</li>
+        <li>Audited inventory tracking workflows and managed chemical store modules, providing foundational insight into ERP operational workflows.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- KEY ENTERPRISE PROJECTS -->
+  <section>
+    <div class="section-title">Key Enterprise Projects</div>
+
+    <!-- Project 1 -->
+    <div class="item">
+      <div class="item-header">
+        <span class="item-title">Financial Backoffice Management System (GEM)</span>
+        <div class="item-date">ASP.NET (Core & MVC) | SQL Server | REST & SOAP APIs</div>
+      </div>
+      <ul>
+        <li>Maintained and enhanced core brokerage modules: <strong>Order Management, Portfolio Management, Risk Mitigation, EOD Processing, Fund Settlements, and CDC Reporting</strong>.</li>
+        <li>Implemented bidirectional <strong>REST & SOAP APIs</strong> for seamless integrations with national clearing houses and external financial payment gateways.</li>
+        <li>Engineered <strong>Crystal Reports</strong> automating generation of daily settlement, trading, and statutory audit compliance statements.</li>
+      </ul>
+    </div>
+
+    <!-- Project 2 -->
+    <div class="item">
+      <div class="item-header">
+        <span class="item-title">Crescent Steel ERP Management System</span>
+        <div class="item-date">ASP.NET Core & MVC | C# | SQL Server | REST API</div>
+      </div>
+      <ul>
+        <li>Developed the <strong>Split Share Module</strong> to automate stock split calculations, instantaneously updating portfolio balances and shareholder ledger records.</li>
+        <li>Engineered secure REST endpoints and optimized database transactions, handling complex corporate action events with zero data discrepancies.</li>
+      </ul>
+    </div>
+
+    <!-- Project 3 -->
+    <div class="item">
+      <div class="item-header">
+        <span class="item-title">Digital Account Opening & Unit Trust (Insurance) Modules</span>
+        <div class="item-date">ASP.NET Core | Web API | SQL Server | Web Forms</div>
+      </div>
+      <ul>
+        <li>Automated end-to-end customer KYC and digital onboarding workflow, <strong>reducing account opening turnaround time by 40%</strong>.</li>
+        <li>Engineered policy lifecycle system covering policy issuance, automated debit/credit voucher generation, and employee payroll management.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- EDUCATION & CERTIFICATIONS -->
+  <section>
+    <div class="section-title">Education & Credentials</div>
+    <div class="item">
+      <div class="item-header">
+        <div>
+          <span class="item-title">Bachelor of Science in Computer Science (BSCS)</span>
+          <span class="contact-separator"> — </span>
+          <span class="item-company">Virtual University of Pakistan</span>
+        </div>
+        <div class="item-date">2026 – In Progress</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-header">
+        <div>
+          <span class="item-title">Higher Diploma in Software Engineering (H.D.S.E)</span>
+          <span class="contact-separator"> — </span>
+          <span class="item-company">Aptech Computer Education</span>
+        </div>
+        <div class="item-date">2021 – 2024 (Grade A)</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-header">
+        <div>
+          <span class="item-title">Intermediate in Computer Science</span>
+          <span class="contact-separator"> — </span>
+          <span class="item-company">Modern Sciences College, Karachi</span>
+        </div>
+        <div class="item-date">2019 – 2021 (Grade A)</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+</body>
+</html>
